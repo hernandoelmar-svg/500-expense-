@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+    int n, rejected = 0;
+    float budget = 500.00, expense;
+    float totalExpenses = 0.00;
+
+    printf("Daily Budget: PHP 500.00\n");
+    printf("How many expenses will be recorded? ");
+    scanf("%d", &n);
+
+    for (int i = 1; i <= n; i++) {
+        printf("\nEnter amount for expense %d: PHP ", i);
+        scanf("%f", &expense);
+
+        if (expense <= 0) {
+            printf("Invalid expense! Enter an amount greater than 0.\n");
+            rejected++;
+        } else if (expense > budget) {
+            printf("Expense rejected! Exceeds remaining budget.\n");
+            rejected++;
+        } else {
+            budget -= expense;
+            totalExpenses += expense;
+
+            printf("Expense accepted!\n");
+            printf("Remaining budget: PHP %.2f\n", budget);
+        }
+    }
+
+    printf("\n===== DAILY EXPENSE SUMMARY =====\n");
+    printf("Total expenses: PHP %.2f\n", totalExpenses);
+    printf("Remaining budget: PHP %.2f\n", budget);
+    printf("Rejected expenses: %d\n", rejected);
+
+    return 0;
+}
